@@ -2,17 +2,18 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import { useEffect } from "react";
-import { useProductStore } from "../stores/useProductStore";
+import { useProductStore } from "../stores/useProductStore.js";
 
 
 
 const HomePage = () => {
-    const { fetchAllProducts, products } = useProductStore();
+    const { products, fetchAllProducts } = useProductStore();
     
-    useEffect(() => {
-        fetchAllProducts();
-    }, [fetchAllProducts, products]);
     console.log("products", products)
+
+    useEffect(()=>{
+        fetchAllProducts()
+    },[fetchAllProducts, products])
 
     // const products = [
     //     { price: 23, name: "لابتوب lenpvo thinkPad", image: "/img.jpg" },
