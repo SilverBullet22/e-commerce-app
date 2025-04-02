@@ -4,10 +4,6 @@ export default {
 	theme: {
 		extend: {
       fontFamily:{
-        // regularAlmarai:['Almarai-Regular', "Arial"],
-        // boldAlmarai:['Almarai-Bold', "Arial"],
-        // extraboldAlmarai:['Almarai-ExtraBold', "Arial"],
-        // lightAlmarai:['Almarai-Light', "Arial"],
         almarai:['Almarai', "Arial"],
         cairoBold:['Cairo-Bold', "Arial"],
       }

@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
+import CategoryItmesPage from "./pages/CategoryItmesPage";
 import CategoryPage from "./pages/CategoryPage";
 
 import { Toaster } from "react-hot-toast";
@@ -49,15 +50,32 @@ function App() {
 					<Route path='/login' element={!user ? <LoginPage /> : <Navigate to='/' />} />
 					<Route
 						path='/secret-dashboard'
-						element={"admin" === "admin" ? <AdminPage /> : <Navigate to='/login' />}
+						element={user?.role === "admin" ? <AdminPage /> : <Navigate to='/login' />}
 					/>
-					<Route path='/category/:category' element={<CategoryPage />} />
+					<Route path='/category' element={<CategoryPage />} />
+					<Route path='/category/:category' element={<CategoryItmesPage />} />
 					<Route path='/cart' element={ <CartPage /> } />
 					<Route
 						path='/purchase-success'
 						element={user ? <PurchaseSuccessPage /> : <Navigate to='/login' />}
 					/>
 					<Route path='/purchase-cancel' element={user ? <PurchaseCancelPage /> : <Navigate to='/login' />} />
+
+					{/* <Route path='/' element={<HomePage />} />
+					<Route path='/signup' element={ <SignUpPage /> } />
+					<Route path='/login' element={ <LoginPage /> } />
+					<Route
+						path='/secret-dashboard'
+						element={ <AdminPage /> }
+					/>
+					<Route path='/category' element={<CategoryPage />} />
+					<Route path='/category/:category' element={<CategoryItmesPage />} />
+					<Route path='/cart' element={ <CartPage /> } />
+					<Route
+						path='/purchase-success'
+						element={ <PurchaseSuccessPage /> }
+					/>
+					<Route path='/purchase-cancel' element={<PurchaseCancelPage /> } /> */}
 				</Routes>
 				
 			</div>
