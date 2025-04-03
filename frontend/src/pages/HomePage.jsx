@@ -17,10 +17,6 @@ const HomePage = () => {
     //     fetchAllProducts()
     // },[fetchAllProducts, products])
 
-    const handleImage =(urlImg)=>{
-        setImageURL(urlImg)
-        console.log("123456789876543")
-    }
 
     const products = [
         { price: 23, name: "لابتوب lenpvo thinkPad", image: "/img.jpg" },
