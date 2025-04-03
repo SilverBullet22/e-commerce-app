@@ -1,9 +1,10 @@
 import toast from "react-hot-toast";
-import { ShoppingCart } from "lucide-react";
+import {useEffect, useState} from "react"
+import { ShoppingCart} from "lucide-react";
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product , setImageURL}) => {
 	const { user } = useUserStore();
 	const { addToCart } = useCartStore();
 	const handleAddToCart = () => {
@@ -18,7 +19,9 @@ const ProductCard = ({ product }) => {
 
 	return (
 		<div className='flex relative flex-col sm:justify-self-auto justify-between h-[85%] sm:h-80 overflow-hidden border border-emerald-600/50 rounded-lg bg-gray-800 shadow-lg'>
-			<div className='relative sm:mx-1 mx-0.5 mt-0.5 flex items-center justify-center sm:mt-1 h-3/2 sm:h-3/4 overflow-hidden rounded-md'>
+			<div 
+			onClick={()=>setImageURL(product.image)}
+			className='relative sm:mx-1 mx-0.5 mt-0.5 flex items-center justify-center sm:mt-1 h-3/2 sm:h-3/4 overflow-hidden rounded-md'>
 				<img className='w-full object-center' src={product.image} alt='product image'/>
 				<div className='absolute inset-0 bg-black bg-opacity-20' />
 			</div>

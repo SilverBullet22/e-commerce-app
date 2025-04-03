@@ -1,30 +1,39 @@
 import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import ProductCard from "../components/ProductCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useProductStore } from "../stores/useProductStore.js";
 
 
 
 const HomePage = () => {
-    const { products, fetchAllProducts } = useProductStore();
+    const [ imageURL, setImageURL ] = useState(null)
     
-    console.log("products", products)
+    // const { products, fetchAllProducts } = useProductStore();
+    
+    // console.log("products", products)
 
-    useEffect(()=>{
-        fetchAllProducts()
-    },[fetchAllProducts, products])
+    // useEffect(()=>{
+    //     fetchAllProducts()
+    // },[fetchAllProducts, products])
 
-    // const products = [
-    //     { price: 23, name: "لابتوب lenpvo thinkPad", image: "/img.jpg" },
-    //     { price: 23, name: "لابتوب", image: "/img1.jpeg" },
-    //     { price: 23, name: "لابتوب", image: "/img1.jpeg" },
-    //     { price: 23, name: "لابتوب", image: "/img3.jpg" },
-    //     { price: 23, name: "لابتوب", image: "/img4.jpg" },
-    //     { price: 23, name: "لابتوب", image: "/img5.jpeg" },
-    //     { price: 23, name: "لابتوب", image: "/img6.jpg" },
-    // ];
+    const handleImage =(urlImg)=>{
+        setImageURL(urlImg)
+        console.log("123456789876543")
+    }
+
+    const products = [
+        { price: 23, name: "لابتوب lenpvo thinkPad", image: "/img.jpg" },
+        { price: 23, name: "لابتوب", image: "/img1.jpeg" },
+        { price: 23, name: "لابتوب", image: "/img1.jpeg" },
+        { price: 23, name: "لابتوب", image: "/img3.jpg" },
+        { price: 23, name: "لابتوب", image: "/img4.jpg" },
+        { price: 23, name: "لابتوب", image: "/img5.jpeg" },
+        { price: 23, name: "لابتوب", image: "/img6.jpg" },
+    ];
+   
     return (
+        <>
         <div className='relative min-h-screen text-white overflow-hidden'>
             <div className='relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-16'>
             <motion.h1
@@ -61,13 +70,26 @@ const HomePage = () => {
 
                 <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3'>
                     {products.map((product) => (
-                        <ProductCard product={product} key={product.name} />
+                        <ProductCard product={product} key={product.name} setImageURL={setImageURL} />
                     ))}
                 </div>
                 </motion.div>
 
             </div>
-        </div>
+        </div> 
+            {imageURL&& (<div className="w-full h-screen fixed top-0 z-40 ease-in-out transition-all duration-3 bg-black flex items-center justify-center">
+                <div className="relative md:h-[100%]">
+                    <img src={imageURL} className=" object-contain size-full" alt="Image" />
+                </div>
+                <div 
+                onClick={()=>setImageURL(null)}
+                className=" absolute flex top-10 cursor-pointer gap-1 items-center justify-center w-fit p-2 rounded-lg font-almarai mx-auto bg-white/10 md:bg-black/60 z-50">
+                    <X className=" size-6"/>
+                    <span>إغلاق</span>
+                </div>
+            </div>
+            )}
+        </>
     );
 }
 
